@@ -53,7 +53,7 @@ pip install -r requirements.txt
 ```bash
 # 1. 准备数据
 #    将下载的维基百科dump文件 (例如 `zhwiki-....xml.bz2`) 
-#    放置在 `data/` 目录下。
+#    创建并放置在 `data/` 目录下。
 
 # 2. 执行粗加工提取
 #    运行wikiextractor。此命令会自动利用所有CPU核心进行并行处理。
@@ -74,7 +74,7 @@ wikiextractor --json -o extracted_test data/zhwiki-....xml.bz2
 python 01_clean_wiki_to_jsonl.py
 ```
 *   **输入:** `extracted_test/` 文件夹中的所有内容。
-*   **输出:** 清洗后的最终数据块，将保存在`output_dir/`目录下。同时，`cleaned_data_samples/`目录下会生成一份1000行的样例数据。
+*   **输出:** 清洗后的最终数据块，将保存在`output_dir/`目录下。此后，运行`create_samples.py`，在`cleaned_data_samples/`目录下会生成一份1000行的样例数据。
 
 ### 4. 清洗策略与实现细节
 
@@ -87,7 +87,7 @@ python 01_clean_wiki_to_jsonl.py
 **阶段二：使用自定义Python脚本进行精加工**
 在`wikiextractor`处理后，我编写了`01_clean_wiki_to_jsonl.py`脚本来执行更精细的清洗，主要包括：
 1.  从wiki_文件中的json检查并提取text字段，并把其title,id,url整理成一个字典存入meta
-2.  由于对json字符串逐行处理，可以在遍历写入前使用一些策略来更具具体需要筛选，比如繁体转化为简体，过滤掉过短的数据之类的。
+2.  由于对json字符串逐行处理，可以在遍历写入前使用一些策略来更具具体需要筛选，比如繁体转化为简体，过滤掉过短的数据之类，此脚本未实现该功能，但可以很方便地在需要时扩展
 
 ### 5. 遇到的挑战与解决方案
 
