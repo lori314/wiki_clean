@@ -74,7 +74,7 @@ wikiextractor --json -o extracted_test data/zhwiki-....xml.bz2
 python 01_clean_wiki_to_jsonl.py
 ```
 *   **输入:** `extracted_test/` 文件夹中的所有内容。
-*   **输出:** 清洗后的最终数据块，将保存在`output_dir/`目录下。此后，运行`create_samples.py`，在`cleaned_data_samples/`目录下会生成一份1000行的样例数据。
+*   **输出:** 清洗后的最终数据块，将保存在`output_dir/`目录下。此后，运行`create_samples.py`，在`cleaned_data_samples/`目录下会生成一份1000行的样例数据。（题目要求的1000个样例即保存在该目录下）
 
 ### 4. 清洗策略与实现细节
 
